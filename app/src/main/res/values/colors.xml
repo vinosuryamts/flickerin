@@ -26,5 +26,6 @@
     <color name="backgroundpagecolor">#f6f7f9</color>
 
     <color name="black_overlay">#05000000</color>
-    <color name="mildwhite">#E0E0E0</color>
+    <color name="mildwhite">#80E0E0E0</color>
+    <color name="darkwhite">#20E0E0E0</color>
 </resources>

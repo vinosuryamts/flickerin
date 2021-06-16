@@ -30,13 +30,13 @@ public class DahboardActivity extends AppCompatActivity {
 
     AppCompatImageView  Logout;
     AppCompatImageView  inventorydashboardicon,shipmentdashboardicon,pickicon,shipicon;
-    TextView            inventorydashboardmarker,shipmentdashboardmarker,pickmarker,shipmarker,username,blinkingimage;
+    TextView            inventorydashboardmarker,shipmentdashboardmarker,pickmarker,shipmarker,username,blinkingimage,blinkingname;
     AppCompatSpinner    warehousespinner;
 
 
     List<DashboardModel> dashList;
     DashboardUserAdapter adapter1;
-    ObjectAnimator objectAnimator;
+    ObjectAnimator objanim,objanim1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class DahboardActivity extends AppCompatActivity {
         pickicon                    = (AppCompatImageView) findViewById(R.id.pickicon);
         shipicon                    = (AppCompatImageView) findViewById(R.id.shipicon);
         blinkingimage               = (TextView) findViewById(R.id.blinkingimage);
+        blinkingname                = (TextView) findViewById(R.id.blinkingname);
         inventorydashboardmarker    = (TextView) findViewById(R.id.inventorydashboardmarker);
         shipmentdashboardmarker     = (TextView) findViewById(R.id.shipmentdashboardmarker);
         pickmarker                  = (TextView) findViewById(R.id.pickmarker);
@@ -58,12 +59,19 @@ public class DahboardActivity extends AppCompatActivity {
         warehousespinner            = (AppCompatSpinner) findViewById(R.id.warehousespinner);
 
 
-        objectAnimator = ObjectAnimator.ofInt(blinkingimage,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.white));
-        objectAnimator.setDuration(1500);
-        objectAnimator.setEvaluator(new ArgbEvaluator());
-        objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
-        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        objectAnimator.start();
+        objanim = objanim.ofInt(blinkingimage,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.darkwhite));
+        objanim.setDuration(2500);
+        objanim.setEvaluator(new ArgbEvaluator());
+        objanim.setRepeatMode(ValueAnimator.REVERSE);
+        objanim.setRepeatCount(ValueAnimator.INFINITE);
+        objanim.start();
+
+        objanim1 = objanim.ofInt(blinkingname,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.darkwhite));
+        objanim1.setDuration(2500);
+        objanim1.setEvaluator(new ArgbEvaluator());
+        objanim1.setRepeatMode(ValueAnimator.REVERSE);
+        objanim1.setRepeatCount(ValueAnimator.INFINITE);
+        objanim1.start();
 
 
 
@@ -155,8 +163,11 @@ public class DahboardActivity extends AppCompatActivity {
     }
 
     public void disableloaders(){
-        objectAnimator.cancel();
+        objanim.cancel();
+        objanim1.cancel();
+        blinkingname.setVisibility(View.INVISIBLE);
         blinkingimage.setVisibility(View.INVISIBLE);
+        username.setVisibility(View.VISIBLE);
         warehousespinner.setVisibility(View.VISIBLE);
     }
 

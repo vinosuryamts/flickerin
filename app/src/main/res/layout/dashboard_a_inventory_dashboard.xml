@@ -213,14 +213,23 @@
 
 
                             <TextView
+                                    android:id="@+id/blinkingname"
+                                    android:layout_width="150dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_toRightOf="@+id/userprofileicon"
+                                    android:layout_below="@+id/dashboardname"
+                                    android:background="@drawable/spinner" />
+
+                            <TextView
                                     android:id="@+id/username"
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
-                                    android:text="Vinod Kumar"
-                                    android:paddingLeft="10dp"
+                                    android:paddingLeft="15dp"
                                     android:textSize="14sp"
                                     android:textStyle="normal"
                                     android:gravity="center_vertical"
+                                    android:visibility="invisible"
                                     android:layout_toRightOf="@+id/userprofileicon"
                                     android:layout_below="@+id/dashboardname"
                                     android:fontFamily="@font/opensansregular"
