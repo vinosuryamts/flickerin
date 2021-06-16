@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.example.flickerin.Dashboard.Models.DashboardModel;
-import com.example.flickerin.Dashboard.Models.SampleModel1;
 import com.example.flickerin.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardUserAdapter extends ArrayAdapter<DashboardModel> {

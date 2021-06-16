@@ -11,8 +11,6 @@
             android:supportsRtl="true"
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Dashboard.UI.SampleUI">
-        </activity>
         <activity
                 android:name=".MainActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"

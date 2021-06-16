@@ -3,7 +3,6 @@ package com.example.flickerin.Dashboard.UI;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,14 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.constraintlayout.motion.widget.Animatable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.flickerin.Dashboard.Adapters.DashboardUserAdapter;
-import com.example.flickerin.Dashboard.Adapters.SampleListViewAdapter1;
 import com.example.flickerin.Dashboard.Models.DashboardModel;
-import com.example.flickerin.Dashboard.Models.SampleModel1;
-import com.example.flickerin.Dashboard.ViewModels.SampleViewModel1;
+import com.example.flickerin.Dashboard.ViewModels.Dashboard_user_model;
 import com.example.flickerin.R;
 
 import java.util.ArrayList;
@@ -75,7 +71,7 @@ public class DahboardActivity extends AppCompatActivity {
 
 
 
-        SampleViewModel1 model = ViewModelProviders.of(this).get(SampleViewModel1.class);
+        Dashboard_user_model model = ViewModelProviders.of(this).get(Dashboard_user_model.class);
         model.setContext(this,this);
         model.getDashboard().observe(this, new Observer<List<DashboardModel>>() {
             @Override

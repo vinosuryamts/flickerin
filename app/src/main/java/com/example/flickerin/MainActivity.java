@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.flickerin.Dashboard.UI.DahboardActivity;
-import com.example.flickerin.Dashboard.UI.SampleUI;
 import com.example.flickerin.customcodes.textcustomcodes.textanimation;
 
 /**
