@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        android:width="60dp"
+        android:height="60dp"
+        android:viewportWidth="100"
+        android:viewportHeight="100">
+
+
+    <!-- Driver yellow path-->
+    <path
+            android:fillColor="@android:color/transparent"
+            android:pathData="M60 68 , L 60 47 , C 60 46  60 45  61 45 , L71 45 ,  C71 45 72 45 73 46, L78 52,  C78 52 79 53 79 54 L79,68 Z"
+            android:strokeColor="#424242"
+            android:strokeWidth="2"/>
+
+    <!-- Driver window path-->
+    <path
+            android:fillColor="@android:color/transparent"
+            android:pathData="M63 60 , L 63 50 , C63 49 63 48 64 48, L70 48, C70 48 71 48 72 49, L75 52, C75 52 76 53 76 55, L 76 60 Z"
+            android:strokeColor="#424242"
+            android:strokeWidth="2"/>
+
+    <!-- back loading path-->
+    <path
+            android:fillColor="@android:color/transparent"
+            android:pathData="M27,68 L27,38 L56,38 L56,68"
+            android:strokeColor="#424242"
+            android:strokeWidth="2"/>
+
+
+    <!-- base line path-->
+    <path
+            android:fillColor="@android:color/transparent"
+            android:pathData="M22,68 L80,68 C80,68 82,69 80,71 L 22,71 C 22,70 20,69 22,68"
+            android:strokeColor="#424242"
+            android:strokeWidth="2"/>
+
+    <!-- back wheel-->
+    <path
+            android:fillColor="#ffffff"
+            android:pathData="M30 70, A1 1 0 1 1 37 70, A 1 1 0 1 1 30,70"
+            android:strokeColor="#424242"
+            android:strokeWidth="2.5"/>
+
+    <!-- front wheel-->
+    <path
+            android:fillColor="#ffffff"
+            android:pathData="M65,70 A2,2 0 2,2 72,70 A2,2 0 2,2 65,70"
+            android:strokeColor="#424242"
+            android:strokeWidth="2.5"/>
+
+</vector>

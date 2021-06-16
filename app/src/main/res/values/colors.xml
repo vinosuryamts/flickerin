@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#21222d</color>
+    <color name="colorPrimaryDark">#171717</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <!--orange color #FFC107 -->
+    <color name="colorLight">#FF8F00</color>
+    <color name="colorLighter">#FFCA28</color>
+
+    <!--
+    <color name="appthemecolot">#2E294E</color>
+    <color name="applightcolor">#FFD400</color> -->
+
+    <color name="appthemecolot">#fc635b</color>
+    <color name="applightcolor">#FCCE5A</color>
+    <color name="appdarkcolor">#000000</color>
+
+
+    <color name="appfontlightcolor">#ffffff</color>
+    <color name="appfontcolor">#424242</color>
+
+    <color name="appiconcolor">#ffffff</color>
+
+    <color name="white">#ffffff</color>
+    <color name="backgroundpagecolor">#f6f7f9</color>
+
+    <color name="black_overlay">#05000000</color>
+    <color name="mildwhite">#E0E0E0</color>
+</resources>
