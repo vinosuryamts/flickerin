@@ -32,7 +32,7 @@ public class SampleUI extends AppCompatActivity {
 
 
         SampleViewModel1 model = ViewModelProviders.of(this).get(SampleViewModel1.class);
-        model.setContext(this);
+        //model.setContext(this);
         model.getHeroes().observe(this, new Observer<List<SampleModel1>>() {
             @Override
             public void onChanged(@Nullable List<SampleModel1> partwebList) {

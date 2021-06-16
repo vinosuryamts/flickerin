@@ -1,5 +1,6 @@
 package com.example.flickerin.Dashboard.Retrofit;
 
+import com.example.flickerin.Dashboard.Models.DashboardModel;
 import com.example.flickerin.Dashboard.Models.SampleModel1;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,4 +15,7 @@ public interface ApiInstance {
 
     @GET("cats/db.php")
     Call<List<SampleModel1>> getHeroes1();
+
+    @GET("cats/dashboard/assignedwarehouse.php")
+    Call<List<DashboardModel>> getDashboard();
 }

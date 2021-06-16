@@ -9,10 +9,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.constraintlayout.motion.widget.Animatable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import com.example.flickerin.Dashboard.Adapters.DashboardUserAdapter;
+import com.example.flickerin.Dashboard.Adapters.SampleListViewAdapter1;
+import com.example.flickerin.Dashboard.Models.DashboardModel;
+import com.example.flickerin.Dashboard.Models.SampleModel1;
+import com.example.flickerin.Dashboard.ViewModels.SampleViewModel1;
 import com.example.flickerin.R;
 
 import java.util.ArrayList;
@@ -26,6 +34,9 @@ public class DahboardActivity extends AppCompatActivity {
     AppCompatSpinner    warehousespinner;
 
 
+    List<DashboardModel> dashList;
+    DashboardUserAdapter adapter1;
+    ObjectAnimator objectAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +58,7 @@ public class DahboardActivity extends AppCompatActivity {
         warehousespinner            = (AppCompatSpinner) findViewById(R.id.warehousespinner);
 
 
-        ObjectAnimator objectAnimator = ObjectAnimator.ofInt(blinkingimage,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.white));
+        objectAnimator = ObjectAnimator.ofInt(blinkingimage,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.white));
         objectAnimator.setDuration(1500);
         objectAnimator.setEvaluator(new ArgbEvaluator());
         objectAnimator.setRepeatMode(ValueAnimator.REVERSE);
@@ -56,32 +67,42 @@ public class DahboardActivity extends AppCompatActivity {
 
 
 
-        List<String> spinnerArray = new ArrayList<>();
-        spinnerArray.add("MO HP");
-        spinnerArray.add("BAL-MUNDKA-MDEL");
-        spinnerArray.add("MO NCR HARYANA");
-        spinnerArray.add("MO TAMILNADU");
-        spinnerArray.add("MO tn");
-        spinnerArray.add("MO asd");
-        spinnerArray.add("MO TAMIafdLNADU");
-        spinnerArray.add("MO sdfdf");
-        spinnerArray.add("MO adf");
-        spinnerArray.add("MO TAMILasdfNADU");
-        spinnerArray.add("MO TAMILNADU");
-        spinnerArray.add("MO TAMILfadfsdNADU");
-        spinnerArray.add("MO asdf");;
-        spinnerArray.add("MO TAMILasdfNADU");
-        spinnerArray.add("MO TAMILNADU");
-        spinnerArray.add("MO TAMILfadfsdNADU");
-        spinnerArray.add("MO asdf");
+        SampleViewModel1 model = ViewModelProviders.of(this).get(SampleViewModel1.class);
+        model.setContext(this,this);
+        model.getDashboard().observe(this, new Observer<List<DashboardModel>>() {
+            @Override
+            public void onChanged(@Nullable List<DashboardModel> dashwebList) {
+                if(dashwebList != null) {
+                    dashList = dashwebList;
+                    adapter1 = new DashboardUserAdapter(DahboardActivity.this,dashList);
+                    username.setText(adapter1.getFirstName());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                DahboardActivity.this,
-                R.layout.dashboard_custom_spinner,
-                spinnerArray
-        );
+                    List<String> spinnerArray = new ArrayList<>();
+                    if (adapter1.getwarehouselist().size() > 0) {
+                        for (int i = 0; i < adapter1.getwarehouselist().size(); i++) {
+                            spinnerArray.add(adapter1.getwarehouselist().get(i));
+                        }
 
-        warehousespinner.setAdapter(adapter);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                DahboardActivity.this,
+                                R.layout.dashboard_custom_spinner,
+                                spinnerArray
+                        );
+
+                        warehousespinner.setAdapter(adapter);
+
+                    }else {
+                        Toast.makeText(DahboardActivity.this, "Not a warehouse user. Please logout", Toast.LENGTH_LONG).show();
+                    }
+
+                }else{
+                    Toast.makeText(DahboardActivity.this, "Invalid Request", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        model.loadDashboard();
+
 
         inventorydashboardicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +152,12 @@ public class DahboardActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void disableloaders(){
+        objectAnimator.cancel();
+        blinkingimage.setVisibility(View.INVISIBLE);
+        warehousespinner.setVisibility(View.VISIBLE);
     }
 
 }
