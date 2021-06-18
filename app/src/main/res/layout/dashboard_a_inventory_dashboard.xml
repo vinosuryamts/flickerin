@@ -169,7 +169,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <androidx.core.widget.NestedScrollView
@@ -198,7 +198,7 @@
                                     android:textSize="18dp"
                                     android:textStyle="bold"
                                     android:gravity="center"
-                                    android:fontFamily="@font/opensansbold"
+                                    android:fontFamily="@font/worksansbold"
                                     android:textColor="@color/appfontcolor"/>
 
                             <de.hdodenhof.circleimageview.CircleImageView
@@ -215,7 +215,8 @@
                             <TextView
                                     android:id="@+id/blinkingname"
                                     android:layout_width="150dp"
-                                    android:layout_height="30dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginTop="10dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/userprofileicon"
                                     android:layout_below="@+id/dashboardname"
@@ -232,13 +233,14 @@
                                     android:visibility="invisible"
                                     android:layout_toRightOf="@+id/userprofileicon"
                                     android:layout_below="@+id/dashboardname"
-                                    android:fontFamily="@font/opensansregular"
+                                    android:fontFamily="@font/opensanssemibold"
                                     android:textColor="@color/appfontcolor"/>
 
                             <TextView
                                     android:id="@+id/blinkingimage"
                                     android:layout_width="150dp"
-                                    android:layout_height="30dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_toRightOf="@+id/userprofileicon"
                                     android:layout_below="@+id/username"

@@ -74,7 +74,6 @@ public class Dashboard_user_model extends ViewModel {
             public void onFailure(Call<List<DashboardModel>> call, Throwable t) {
                 dashList.setValue(null);
                 Toast.makeText(activity,"Unable to connect with webservice. Please contact administrator",Toast.LENGTH_LONG).show();
-                activity.disableloaders();
             }
 
         });

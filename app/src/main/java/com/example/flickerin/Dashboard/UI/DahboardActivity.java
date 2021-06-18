@@ -14,6 +14,8 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
+import com.bumptech.glide.Glide;
 import com.example.flickerin.Dashboard.Adapters.DashboardUserAdapter;
 import com.example.flickerin.Dashboard.Models.DashboardModel;
 import com.example.flickerin.Dashboard.ViewModels.Dashboard_user_model;
@@ -22,12 +24,15 @@ import com.example.flickerin.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class DahboardActivity extends AppCompatActivity {
 
     AppCompatImageView  Logout;
     AppCompatImageView  inventorydashboardicon,shipmentdashboardicon,pickicon,shipicon;
     TextView            inventorydashboardmarker,shipmentdashboardmarker,pickmarker,shipmarker,username,blinkingimage,blinkingname;
     AppCompatSpinner    warehousespinner;
+    CircleImageView     userprofileicon;
 
 
     List<DashboardModel> dashList;
@@ -45,6 +50,7 @@ public class DahboardActivity extends AppCompatActivity {
         shipmentdashboardicon       = (AppCompatImageView) findViewById(R.id.shipmentdashboardicon);
         pickicon                    = (AppCompatImageView) findViewById(R.id.pickicon);
         shipicon                    = (AppCompatImageView) findViewById(R.id.shipicon);
+        userprofileicon             = (CircleImageView) findViewById(R.id.userprofileicon);
         blinkingimage               = (TextView) findViewById(R.id.blinkingimage);
         blinkingname                = (TextView) findViewById(R.id.blinkingname);
         inventorydashboardmarker    = (TextView) findViewById(R.id.inventorydashboardmarker);
@@ -107,6 +113,9 @@ public class DahboardActivity extends AppCompatActivity {
 
         model.loadDashboard();
 
+
+
+        Glide.with(this).load("http://goo.gl/gEgYUd").into(userprofileicon);
 
         inventorydashboardicon.setOnClickListener(new View.OnClickListener() {
             @Override

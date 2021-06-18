@@ -43,7 +43,8 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation 'com.google.android.material:material:1.3.0'
     implementation "androidx.percentlayout:percentlayout:1.0.0"
-    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation group: 'com.github.ybq', name: 'Android-SpinKit', version: '1.2.0'
+
 
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.vectordrawable:vectordrawable-animated:1.1.0"
@@ -59,10 +60,20 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation "android.arch.lifecycle:viewmodel:2.2.0"
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
-    annotationProcessor 'androidx.lifecycle:lifecycle-runtime:2.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //implementation 'androidx.lifecycle:lifecycle-extensions:1.1.1'
+    //implementation "androidx.lifecycle:lifecycle-common-java8:1.1.1"
+
+    implementation group: 'android.arch.lifecycle', name: 'extensions', version: '1.1.1'
+    implementation group: 'android.arch.lifecycle', name: 'common', version: '1.1.1'
+    implementation group: 'android.arch.lifecycle', name: 'viewmodel', version: '1.1.1'
+    implementation group: 'android.arch.lifecycle', name: 'runtime', version: '1.1.1'
+    implementation group: 'android.arch.lifecycle', name: 'compiler', version: '1.1.1'
+
+    //annotationProcessor 'androidx.lifecycle:lifecycle-compiler:1.1.1'
+    //annotationProcessor 'androidx.lifecycle:lifecycle-runtime:1.1.1'
 
     // https://mvnrepository.com/artifact/com.oracle/ojdbc14
     implementation 'com.oracle.ojdbc:ojdbc10:19.3.0.0'
