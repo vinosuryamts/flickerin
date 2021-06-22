@@ -5,11 +5,11 @@
         android:useLevel="true">
 
     <item
-            android:drawable="@drawable/color1"
+            android:drawable="@drawable/bottomline"
             android:duration="500"
             android:useLevel="true"/>
     <item
-            android:drawable="@drawable/color2"
+            android:drawable="@drawable/custompopupbackground"
             android:duration="500"
             android:useLevel="true"/>
 </animation-list>

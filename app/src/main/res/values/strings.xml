@@ -1,7 +1,7 @@
 <resources>
     <!--Splash Page Strings-->
     <string name="app_name">flickerin</string>
-    <string name="captions">Controlling Inventory is Simple</string>
+    <string name="captions">Controlling Inventory is much easier</string>
 
     <!--Signin Page Strings-->
     <string name="signintext">Sign in to your Account</string>

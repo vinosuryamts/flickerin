@@ -16,12 +16,12 @@
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="@color/appthemecolot"
                     android:elevation="5dp">
 
                 <androidx.percentlayout.widget.PercentRelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient">
 
                     <androidx.percentlayout.widget.PercentRelativeLayout
                             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                                         android:layout_width="4dp"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
-                                        android:background="@color/applightcolor"
+                                        android:background="@color/appfontcolor"
                                         android:layout_marginTop="10dp"
                                         android:layout_marginBottom="10dp">
 
@@ -78,7 +78,6 @@
                                         android:layout_width="4dp"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
-                                        android:background="@color/appthemecolot"
                                         android:layout_marginTop="10dp"
                                         android:layout_marginBottom="10dp">
 
@@ -104,7 +103,6 @@
                                         android:layout_width="4dp"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
-                                        android:background="@color/appthemecolot"
                                         android:layout_marginTop="10dp"
                                         android:layout_marginBottom="10dp">
 
@@ -130,7 +128,6 @@
                                         android:layout_width="4dp"
                                         android:layout_height="match_parent"
                                         android:layout_alignParentRight="true"
-                                        android:background="@color/appthemecolot"
                                         android:layout_marginTop="10dp"
                                         android:layout_marginBottom="10dp">
 
@@ -180,7 +177,7 @@
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="25dp"
                             android:orientation="vertical">
 
 
@@ -201,18 +198,30 @@
                                     android:fontFamily="@font/worksansbold"
                                     android:textColor="@color/appfontcolor"/>
 
-                            <de.hdodenhof.circleimageview.CircleImageView
+                            <androidx.percentlayout.widget.PercentRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:layout_below="@+id/dashboardname"
+                                android:layout_marginTop="10dp">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
                                     android:id="@+id/userprofileicon"
                                     android:layout_width="80dp"
                                     android:layout_height="80dp"
-                                    android:src="@drawable/a_123"
                                     app:civ_border_width="2dp"
                                     android:layout_marginLeft="15dp"
-                                    android:layout_below="@+id/dashboardname"
-                                    app:civ_border_color="@color/backgroundpagecolor"/>
+                                    android:visibility="invisible"
+                                    app:civ_border_color="@color/mildwhite"/>
 
+                                <TextView
+                                    android:id="@+id/blinkimageview"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:layout_marginLeft="15dp" />
 
-                            <TextView
+                                <TextView
                                     android:id="@+id/blinkingname"
                                     android:layout_width="150dp"
                                     android:layout_height="20dp"
@@ -222,10 +231,10 @@
                                     android:layout_below="@+id/dashboardname"
                                     android:background="@drawable/spinner" />
 
-                            <TextView
+                                <TextView
                                     android:id="@+id/username"
                                     android:layout_width="match_parent"
-                                    android:layout_height="40dp"
+                                    android:layout_height="50dp"
                                     android:paddingLeft="15dp"
                                     android:textSize="14sp"
                                     android:textStyle="normal"
@@ -236,7 +245,7 @@
                                     android:fontFamily="@font/opensanssemibold"
                                     android:textColor="@color/appfontcolor"/>
 
-                            <TextView
+                                <TextView
                                     android:id="@+id/blinkingimage"
                                     android:layout_width="150dp"
                                     android:layout_height="20dp"
@@ -246,9 +255,9 @@
                                     android:layout_below="@+id/username"
                                     android:background="@drawable/spinner">
 
-                            </TextView>
+                                </TextView>
 
-                            <Spinner
+                                <Spinner
                                     android:id="@+id/warehousespinner"
                                     android:layout_width="wrap_content"
                                     android:layout_height="30dp"
@@ -258,7 +267,10 @@
                                     android:visibility="invisible"
                                     android:background="@drawable/spinner">
 
-                            </Spinner>
+                                </Spinner>
+
+                            </androidx.percentlayout.widget.PercentRelativeLayout>
+
 
 
                         </androidx.percentlayout.widget.PercentRelativeLayout>

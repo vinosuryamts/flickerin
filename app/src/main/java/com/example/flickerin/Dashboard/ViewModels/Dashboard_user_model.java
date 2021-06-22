@@ -5,7 +5,7 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.flickerin.Dashboard.Models.DashboardModel;
-import com.example.flickerin.Dashboard.Retrofit.ApiInstance;
+import com.example.flickerin.Dashboard.Retrofit.DashboardApiInstance;
 import com.example.flickerin.Dashboard.Retrofit.RetrofitInstance;
 import com.example.flickerin.Dashboard.UI.DahboardActivity;
 import com.example.flickerin.utilities.Util;
@@ -52,7 +52,7 @@ public class Dashboard_user_model extends ViewModel {
             e.printStackTrace();
         }
 
-        ApiInstance client = RetrofitInstance.getRetrofitClient().create(ApiInstance.class);
+        DashboardApiInstance client = RetrofitInstance.getRetrofitClient().create(DashboardApiInstance.class);
 
         //this is where we call the method fromRetrofitClient.
         // I passed my ID from github for getting data. Try your own
@@ -73,7 +73,7 @@ public class Dashboard_user_model extends ViewModel {
             @Override
             public void onFailure(Call<List<DashboardModel>> call, Throwable t) {
                 dashList.setValue(null);
-                Toast.makeText(activity,"Unable to connect with webservice. Please contact administrator",Toast.LENGTH_LONG).show();
+                activity.showPopup(context,"API Error","Unable to connect with webservice. Please contact administrator");
             }
 
         });

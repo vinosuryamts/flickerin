@@ -3,9 +3,16 @@ package com.example.flickerin.Dashboard.UI;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
@@ -16,6 +23,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.flickerin.Dashboard.Adapters.DashboardUserAdapter;
 import com.example.flickerin.Dashboard.Models.DashboardModel;
 import com.example.flickerin.Dashboard.ViewModels.Dashboard_user_model;
@@ -30,15 +39,18 @@ public class DahboardActivity extends AppCompatActivity {
 
     AppCompatImageView  Logout;
     AppCompatImageView  inventorydashboardicon,shipmentdashboardicon,pickicon,shipicon;
-    TextView            inventorydashboardmarker,shipmentdashboardmarker,pickmarker,shipmarker,username,blinkingimage,blinkingname;
+    TextView            inventorydashboardmarker,shipmentdashboardmarker,pickmarker,shipmarker,username,blinkingimage,blinkingname,blinkimageview;
     AppCompatSpinner    warehousespinner;
     CircleImageView     userprofileicon;
+
+    Dialog mydialog;
 
 
     List<DashboardModel> dashList;
     DashboardUserAdapter adapter1;
-    ObjectAnimator objanim,objanim1;
+    ObjectAnimator objanim,objanim1,objanim2;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +65,7 @@ public class DahboardActivity extends AppCompatActivity {
         userprofileicon             = (CircleImageView) findViewById(R.id.userprofileicon);
         blinkingimage               = (TextView) findViewById(R.id.blinkingimage);
         blinkingname                = (TextView) findViewById(R.id.blinkingname);
+        blinkimageview              = (TextView) findViewById(R.id.blinkimageview);
         inventorydashboardmarker    = (TextView) findViewById(R.id.inventorydashboardmarker);
         shipmentdashboardmarker     = (TextView) findViewById(R.id.shipmentdashboardmarker);
         pickmarker                  = (TextView) findViewById(R.id.pickmarker);
@@ -61,20 +74,27 @@ public class DahboardActivity extends AppCompatActivity {
         warehousespinner            = (AppCompatSpinner) findViewById(R.id.warehousespinner);
 
 
+        //Setting blinking effects for waiting period time
         objanim = objanim.ofInt(blinkingimage,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.darkwhite));
-        objanim.setDuration(2500);
+        objanim.setDuration(1500);
         objanim.setEvaluator(new ArgbEvaluator());
         objanim.setRepeatMode(ValueAnimator.REVERSE);
         objanim.setRepeatCount(ValueAnimator.INFINITE);
         objanim.start();
 
         objanim1 = objanim.ofInt(blinkingname,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.darkwhite));
-        objanim1.setDuration(2500);
+        objanim1.setDuration(1000);
         objanim1.setEvaluator(new ArgbEvaluator());
         objanim1.setRepeatMode(ValueAnimator.REVERSE);
         objanim1.setRepeatCount(ValueAnimator.INFINITE);
         objanim1.start();
 
+        objanim2 = objanim.ofInt(blinkimageview,"backgroundColor",getColor(R.color.mildwhite),getColor(R.color.darkwhite));
+        objanim2.setDuration(2000);
+        objanim2.setEvaluator(new ArgbEvaluator());
+        objanim2.setRepeatMode(ValueAnimator.REVERSE);
+        objanim2.setRepeatCount(ValueAnimator.INFINITE);
+        objanim2.start();
 
 
         Dashboard_user_model model = ViewModelProviders.of(this).get(Dashboard_user_model.class);
@@ -86,6 +106,11 @@ public class DahboardActivity extends AppCompatActivity {
                     dashList = dashwebList;
                     adapter1 = new DashboardUserAdapter(DahboardActivity.this,dashList);
                     username.setText(adapter1.getFirstName());
+                    Glide.with(DahboardActivity.this)
+                            .load(adapter1.getProfileImage())
+                            .apply(RequestOptions.skipMemoryCacheOf(true))
+                            .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
+                            .into(userprofileicon);
 
                     List<String> spinnerArray = new ArrayList<>();
                     if (adapter1.getwarehouselist().size() > 0) {
@@ -102,11 +127,9 @@ public class DahboardActivity extends AppCompatActivity {
                         warehousespinner.setAdapter(adapter);
 
                     }else {
-                        Toast.makeText(DahboardActivity.this, "Not a warehouse user. Please logout", Toast.LENGTH_LONG).show();
+                        showPopup(DahboardActivity.this,"Application Error","Not a warehouse user. Please logout");
                     }
 
-                }else{
-                    Toast.makeText(DahboardActivity.this, "Invalid Request", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -115,45 +138,44 @@ public class DahboardActivity extends AppCompatActivity {
 
 
 
-        Glide.with(this).load("http://goo.gl/gEgYUd").into(userprofileicon);
-
         inventorydashboardicon.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                inventorydashboardmarker.setBackgroundResource(R.color.applightcolor);
-                shipmentdashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                pickmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmarker.setBackgroundResource(R.color.appthemecolot);
+                inventorydashboardmarker.setBackgroundResource(R.color.appfontcolor);
+                shipmentdashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                pickmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmarker.setBackgroundResource(Color.TRANSPARENT);
             }
         });
 
         shipmentdashboardicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inventorydashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmentdashboardmarker.setBackgroundResource(R.color.applightcolor);
-                pickmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmarker.setBackgroundResource(R.color.appthemecolot);
+                inventorydashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmentdashboardmarker.setBackgroundResource(R.color.appfontcolor);
+                pickmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmarker.setBackgroundResource(Color.TRANSPARENT);
             }
         });
 
         pickicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inventorydashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmentdashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                pickmarker.setBackgroundResource(R.color.applightcolor);
-                shipmarker.setBackgroundResource(R.color.appthemecolot);
+                inventorydashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmentdashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                pickmarker.setBackgroundResource(R.color.appfontcolor);
+                shipmarker.setBackgroundResource(Color.TRANSPARENT);
             }
         });
 
         shipicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inventorydashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmentdashboardmarker.setBackgroundResource(R.color.appthemecolot);
-                pickmarker.setBackgroundResource(R.color.appthemecolot);
-                shipmarker.setBackgroundResource(R.color.applightcolor);
+                inventorydashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmentdashboardmarker.setBackgroundResource(Color.TRANSPARENT);
+                pickmarker.setBackgroundResource(Color.TRANSPARENT);
+                shipmarker.setBackgroundResource(R.color.appfontcolor);
             }
         });
 
@@ -161,7 +183,7 @@ public class DahboardActivity extends AppCompatActivity {
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DahboardActivity.this,"Clicked on Logout",Toast.LENGTH_LONG).show();
+                showPopup(DahboardActivity.this,"Logout","Click on OK to Logout, else click on cancel to stay");
             }
         });
 
@@ -170,10 +192,49 @@ public class DahboardActivity extends AppCompatActivity {
     public void disableloaders(){
         objanim.cancel();
         objanim1.cancel();
+        objanim2.cancel();
+        blinkimageview.setVisibility(View.INVISIBLE);
         blinkingname.setVisibility(View.INVISIBLE);
         blinkingimage.setVisibility(View.INVISIBLE);
         username.setVisibility(View.VISIBLE);
         warehousespinner.setVisibility(View.VISIBLE);
+        userprofileicon.setVisibility(View.VISIBLE);
+    }
+
+    public void showPopup(Context context, String titleString, String messageString){
+        mydialog = new Dialog(context);
+        TextView title,message;
+        Button okbutton, cancelbutton;
+
+        mydialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mydialog.setContentView(R.layout.custom_message_popup);
+        mydialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        okbutton = (Button) mydialog.findViewById(R.id.okbutton);
+        cancelbutton = (Button) mydialog.findViewById(R.id.cancelbutton);
+        title = (TextView) mydialog.findViewById(R.id.title);
+        message = (TextView) mydialog.findViewById(R.id.message);
+
+        title.setText(titleString);
+        message.setText(messageString);
+
+
+
+        okbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mydialog.dismiss();
+            }
+        });
+
+        cancelbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mydialog.dismiss();
+            }
+        });
+
+        mydialog.show();
     }
 
 }

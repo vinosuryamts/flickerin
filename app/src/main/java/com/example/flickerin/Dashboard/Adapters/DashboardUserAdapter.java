@@ -25,13 +25,13 @@ public class DashboardUserAdapter extends ArrayAdapter<DashboardModel> {
         this.values = values;
     }
 
-    public void setValues (List<DashboardModel> values){
-        this.values =values;
+    public String getFirstName(){
+        String firstname = values.get(getPosition1()).getFirstname();
+        return firstname;
     }
 
-    public String getFirstName(){
-        String firstname = values.get(getPosition1()).firstname();
-        return firstname;
+    public String getProfileImage(){
+        return values.get(getPosition1()).getProfileimage();
     }
 
     private void setPosition(int currentposition) {

@@ -12,7 +12,7 @@
     <color name="appthemecolot">#2E294E</color>
     <color name="applightcolor">#FFD400</color> -->
 
-    <color name="appthemecolot">#fc635b</color>
+    <color name="appthemecolor">#fc635b</color>
     <color name="applightcolor">#FCCE5A</color>
     <color name="appdarkcolor">#000000</color>
 
@@ -28,4 +28,10 @@
     <color name="black_overlay">#05000000</color>
     <color name="mildwhite">#80E0E0E0</color>
     <color name="darkwhite">#20E0E0E0</color>
+
+    <color name="gradstart">#ff9a44</color>
+    <color name="gradend">#fc6076</color>
+
+    <color name="okbutton">#66BB6A</color>
+    <color name="cancelbuttom">#ef5350</color>
 </resources>
